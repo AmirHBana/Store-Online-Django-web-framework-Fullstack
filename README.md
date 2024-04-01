@@ -46,6 +46,16 @@
 
 <br>
 
+
+<h3>Product preview </h3>
+<hr>
+
+<br><br>
+
+<img src="https://github.com/AmirHBana/Store-Online-Django-web-framework-Fullstack/blob/main/Shopstore_django_project/pic1.png" alt="awd_main project" style="max-width: 100%; max-height: 70%;">
+
+<br>
+
 <hr>
 
 <br>
