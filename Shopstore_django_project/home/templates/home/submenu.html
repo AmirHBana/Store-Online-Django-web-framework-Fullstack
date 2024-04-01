@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% for sub in category.children.all %}
+    <a class="dropdown-item" href="{{ sub.get_absolute_url }}">{{ sub.name }}</a>
+    {% if sub.children.count %}
+        {% include 'home/submenu.html' with category=sub %}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

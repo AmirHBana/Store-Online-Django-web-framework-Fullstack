@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        
+        <form action="" method="post" class="col-md-6" novalidate>
+            <h2>صفحه ورود کاربر</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="ورود">
+        </form>
+
+
+
+{% endblock %}

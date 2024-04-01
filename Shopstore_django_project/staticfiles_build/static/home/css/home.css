@@ -1,0 +1,14 @@
+.paginationss {
+  display: flex;
+  justify-content: center;
+}
+
+.colorcart {
+  background-color: black;
+}
+
+
+.comment-section {
+  height: 300px; /* Adjust the height as needed */
+  overflow-y: auto; /* Add scrollbars if needed */
+}

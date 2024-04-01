@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% block content %}
+{% include 'home/inc/home/navar.html' %}        
+<div class="banner_section layout_padding">
+    <div class="container">
+        <div id="my_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="banner_taital">
+                                <br>
+                            </h1>
+                            <div class="menu_section">
+                                <ul class="nav nav-pills">
+                                    {% recursetree categories %}
+                                        <li>
+                                            <a href="{{ categories.get_family }}">{{ node.name }}</a>
+                                            {% if not node.is_leaf_node %}
+                                                <ul class="children">
+                                                    <a href="{{ categories.get_children }}">{{ children }}</a>
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endrecursetree %}
+                                    
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if page_obj.has_previous %}
+            <a class="carousel-control-prev" href="?page={{ page_obj.previous_page_number }}" role="button" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <a class="carousel-control-next" href="?page={{ page_obj.next_page_number }}" role="button" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+     <!-- banner section end -->
+  </div>
+  <!-- banner bg main end -->
+  <!-- fashion section start -->
+  <div class="fashion_section">
+     <div id="main_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+           <div class="carousel-item active">
+              <div class="container">
+                 <h1 class="fashion_taital">محصولات</h1>
+                 <div class="fashion_section_2">
+                    <div class="row">
+                    </div>
+                 </div>      
+                   
+
+
+                 <br/><br/><br/><br/>
+                  {% for product in products %}
+                     <div class="card" style="width: 18rem; display:inline-block;">
+                        <img src="{{ product.image.url }}" class="card-img-top">
+                           <div class="card-body">
+                           <a href="{{ product.get_absolute_url }}" class="card-title">{{ product.name }}</a>
+                           </div>
+                     </div>
+                  {% endfor %}  
+                       
+                       
+                    </div>
+                 </div>
+              </div>
+           </div>
+           
+
+              
+               
+
+     </div>
+   </div>
+<br><br>
+<!-- Pagination -->
+
+
+    <div class="paginationss" style="clear:both;">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    {% if page_obj.has_previous %}
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    {% endif %}
+                </li>
+                {% if page_obj.paginator.num_pages > 1 %}
+                    {% if page_obj.number > 3 %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">1</a>
+                        </li>
+                        {% if page_obj.number > 4 %}
+                            <li class="page-item disabled">
+                                <a class="page-link">...</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                            <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.number < page_obj.paginator.num_pages %}
+                        {% if page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                            {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                                <li class="page-item disabled">
+                                    <a class="page-link">...</a>
+                                </li>
+                            {% endif %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if page_obj.number != 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                        </li>
+                    {% endif %}
+                    
+                {% endif %}
+                <li class="page-item">
+                    {% if page_obj.has_next %}
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        {% if page_obj.number > page_obj.paginator.num_pages %}
+                         <script>window.location.href = "?page={{ page_obj.paginator.num_pages }}";</script>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+<!-- footer section start -->
+<br>
+<div class="footer_section layout_padding">
+    <div class="container">
+        <div class="footer_logo"><a href="{% url 'home:home' %}"><img src="{% static 'images/footer-logo.png' %}"></a></div>
+        <div class="input_bt">
+            <input type="text" class="mail_bt" placeholder="Your Email or Gmail" name="Your Email">
+            <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+        </div>
+        <div class="location_main">پشتیبانی سایت : <a href=""> 0636-446-0913  </a></div>
+    </div>
+</div>
+
+<!-- footer section end -->
+<!-- copyright section start -->
+<div class="copyright_section">
+    <div class="container">
+        <p class="copyright_text">
+            © 2023 All Rights Reserved. Design by <a href="https://github.com/AmirHBana">Amir Hossien Banayi</a>
+        </p>
+    </div>
+</div>
+<!-- Javascript files-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'js/plugin.js' %}"></script>
+<!-- sidebar -->
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+{% endblock %}
+
+

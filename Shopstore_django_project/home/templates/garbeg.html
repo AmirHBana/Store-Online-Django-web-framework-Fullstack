@@ -1,0 +1,19 @@
+{% for category in categories %}
+                                        <div class="btn-group">
+                                            {% if not category.parent %}
+                                                <a class="btn btn-secendry" href="{{ category.get_absolute_url }}" style="color: beige;">{{ category.name }}</a>
+                                                <button style="color: antiquewhite;" type="button" class="btn btn-secendry dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span class="visually-hidden">Toggle Dropdown</span>
+                                                    
+                                                </button>
+                                                {% include 'home/submenu.html' with category=category %}
+                                                {% if category.children.count %}
+                                                    <ul class="dropdown-menu">
+                                                        {% for child in category.children.all %}
+                                                            <a class="nav-link" href="{{ child.get_absolute_url }}">{{ child.name }}</a>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}

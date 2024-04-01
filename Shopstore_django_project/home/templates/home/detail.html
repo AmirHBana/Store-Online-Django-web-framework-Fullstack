@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="header_section_top">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="custom_menu">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="logo_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="logo"><a href="#"><img src="{% static 'images/logo.png' %}"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header_section">
+    <div class="container">
+        <div class="containt_main">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="{% url 'home:home' %}">خانه</a>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'accounts:user_logout' %}">خروج از حساب کاربری</a>
+                {% else %}
+                <a href="{% url 'accounts:user_register' %}">ثبت نام</a>
+                <a href="{% url 'accounts:user_login' %}">ورود</a>
+                {% endif %}
+            </div>
+            <span class="toggle_icon" onclick="openNav()"><img src="{% static 'images/toggle-icon.png' %}"></span>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+            <div class="main">
+                <!-- Another variation with a button -->
+                
+            </div>
+            <div class="header_box">
+              
+                <div class="login_menu">
+                   <ul>
+                        <div class="colorcart">
+                            <li><a href="{% url 'home:home' %}">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span class="padding_10">Cart</span></a>
+                            </li>
+                            <li><a href="{% url 'home:home' %}">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="padding_10">Cart</span></a>
+                            </li>
+                        </div>
+                   </ul>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div class="container-fluid">
+    <h2 dir="rtl">{{ product.name }}</h2>
+    <small dir="rtl">{{ product.created }}</small><br/>
+    <img src='{{ product.image.url }}' style="width: 300px;">
+    <h6 dir="rtl">{{ product.description|safe }}</h6><br/><br/>
+</div>
+
+
+
+
+
+
+
+<div class="col-md-9 card mb-1 mt-1">
+    <div class="card-body ">
+        <div class="comment-section">
+            {% if request.user.is_authenticated %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="ارسال ديدگاه">
+                </form><br>
+            {% else %}
+                <p class="alert alert-danger">Only Logged in user can comments</p>
+            {% endif %}
+            {% for comment in comments %}
+                <div class="card" bg-dark text-white>
+                    <p class="card-header">{{ comment.user }} | {{ comment.created|timesince }}</p>
+                    <p class="card-body">{{ comment.body }}</p>
+                    {% if request.user.is_authenticated %}
+                        <form action="{% url 'home:add_reply' product.slug comment.id %}" method="post">
+                            {% csrf_token %}
+                            {{ reply_form.as_p }}
+                            <input type="submit" value="ارسال ديدگاه">
+                        </form>
+                    {% endif %}
+                    {% with replies=comment.rcomments.all %}
+                        {% for reply in replies %}
+                            <p class="bg-primary p-3 m-2">{{ reply.user }} <br/> {{ reply.body }}</p>
+                        {% endfor %}
+                    {% endwith %}
+                </div><br>
+            {% empty %}   
+                <p>کامنتی وجود ندارد!</p> 
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="footer_section layout_padding">
+    <div class="container">
+        <div class="footer_logo"><a href="index.html"><img src="static/images/footer-logo.png"></a></div>
+        <div class="input_bt">
+            <input type="text" class="mail_bt" placeholder="Your Email or Gmail" name="Your Email">
+            <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+        </div>
+        <div class="location_main">پشتیبانی سایت : <a href="#"> 0636-446-0913  </a></div>
+    </div>
+</div>
+<!-- footer section end -->
+<!-- copyright section start -->
+<div class="copyright_section">
+    <div class="container">
+        <p class="copyright_text">© 2023 All Rights Reserved. Design by <a href="https://github.com/AmirHBana">Amir Hossien Banayi</a></p>
+    </div>
+</div>
+<!-- Javascript files-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/plugin.js"></script>
+<!-- sidebar -->
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/custom.js"></script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+
+    
+{% endblock %}
