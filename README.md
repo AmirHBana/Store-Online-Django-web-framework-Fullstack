@@ -7,11 +7,8 @@
 <p> At first you need go to the directory you want to clone this project </p>
 <br>
 
-<hr>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>$> git clone https://www.github.com/AmirHBana/Store-Online-Django-web-framework-Fullstack.git</pre></div>
 
-<h3><strong> $> git clone https://www.github.com/AmirHBana/Store-Online-Django-web-framework-Fullstack.git </strong></h3>
-
-<hr>
 
 <br><br>
 
@@ -23,26 +20,22 @@
   after you activate your venv install python packages below in to your venv
 </p>
 
-<hr>
-
 <br>
 
-<h3> <strong> <hr>
-        $> pip install django==4.2.8 <br> <hr>
-        $> pip install django-ckeditor==6.7.1 <br> <hr>
-        $> pip install django-image-tools==0.8b3 <br> <hr>
-        $> pip install pillow==10.2.0 <br> <hr>
-        $> pip install psycopy2==2.9.9 <br> <hr>
-        $> pip install django-mptt==0.16.0 <br> <hr>
-        $> pip install django-resized <br> <hr>
-        $> pip install django-ckeditor-uploader <br> <hr>
-        $> pip install psycopy2 <br> <hr>
-        $> pip install psycopy2-binary <br> <hr>
-        $> pip install boto3 <br> <hr>
-        $> pip install django-sitemap <br> <hr>
-        $> pip install Jazzmin <br> <hr>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django==4.2.8</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install Jazzmin</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-sitemap</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install boto3</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install psycopy2-binary</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install psycopy2</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-ckeditor-uploader</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-resized</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-mptt==0.16.0</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install psycopy2==2.9.9</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install pillow==10.2.0</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-image-tools==0.8b3</pre></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>pip install django-ckeditor==6.7.1</pre></div>
 
-</strong> </h3>
 
 <br>
 
@@ -68,7 +61,12 @@
 
 <hr>
 
-<h3> <strong>  $> python manage.py runserver </strong> </h3>
+
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>$> python manage.py makemigrations</pre></div>
+
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>$> python manage.py migrate</pre></div>
+
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>$> python manage.py runserver</pre></div>
 
 <hr>
 
